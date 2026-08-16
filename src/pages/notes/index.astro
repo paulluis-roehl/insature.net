@@ -1,0 +1,37 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const recentNotes = [
+{ href: "/notes/hello_world/", title: "Hello, World!", date: "16 August 2026", description: "And hello, static site generator." },
+];
+---
+
+<Base title="Notes | insature" description="Notes on various topics.">
+  <p class="eyebrow">all notes</p>
+  <h1>Notes</h1>
+  <article>
+    <ul class="notes">
+      {recentNotes.map((note) => (
+        <li>
+          <a href={note.href}>
+            <span>{note.date}</span>
+            <strong>{note.title}</strong>
+            <p>{note.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .eyebrow, .date, .notes span { color: #6d7369; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  article { margin-top: 2rem; padding-top: 1.2rem; }
+  article p:last-child { color: #6d7369; margin-top: 0.2rem; }
+  .notes { border-top: 1px solid #d9d2c5; list-style: none; margin: 0; padding: 0; }
+  .notes li { border-bottom: 1px solid #d9d2c5; }
+  .notes a { display: block; padding-block: 1.2rem; text-decoration: none; }
+  .notes strong { color: #20271f; display: block; font-size: 1.3rem; margin-top: 0.1rem; }
+  .notes p { color: #6d7369; margin: 0.1rem 0 0; }
+
+</style>
