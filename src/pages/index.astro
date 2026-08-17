@@ -1,9 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
+import { notes, sortByModified } from "../content/content.ts"
 
-const recentNotes = [
-{ href: "/notes/hello_world/", title: "Hello, World!", date: "16 August 2026", description: "And hello, static site generator." },
-];
+// get the 3 most recent notes
+const recentNotes = sortByModified(notes).slice(0, 3);
 ---
 
 <Base title="Home | insature" description="Overview.">
@@ -19,12 +19,12 @@ const recentNotes = [
       <a href="/notes/">all notes</a>
     </div>
     <ul class="notes">
-      {recentNotes.map((note) => (
+          {recentNotes.map((note) => (
         <li>
-          <a href={note.href}>
-            <span>{note.date}</span>
-            <strong>{note.title}</strong>
-            <p>{note.description}</p>
+          <a href={`/notes/${note.id}/`}>
+            <span>{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
+            <strong>{note.data.title}</strong>
+            <p>{note.data.description}</p>
           </a>
         </li>
       ))}

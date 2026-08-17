@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { notes } from "../../content/content.ts"
+
+
+export async function getStaticPaths() {
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const date = note.data.created.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<Base title={`${note.data.title} | insature`} description={note.data.description}>
+  <article>
+    <p class="meta">{date} · note</p>
+    <h1>{note.data.title}</h1>
+    <p class="lede">{note.data.description}</p>
+    <Content />
+    <p><a href="/notes/">Back to notes</a></p>
+  </article>
+</Base>
+
+<style>
+  article { max-width: 39rem; }
+  .meta { color: #6d7369; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .lede { font-size: 1.35rem; line-height: 1.45; margin-block: 2rem; }
+</style>
