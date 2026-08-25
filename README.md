@@ -2,6 +2,13 @@
 
 A soon-to-be digital garden and personal blog.
 
+
+## Deploying
+
+- Local build server: `npm run dev`
+- Build for deployment (not necessary for github pages): `npm run build`
+- Preview deployed site: `npm run preview`
+
 ## Writing notes
 
 Add a Markdown file to `src/content/notes/`. Its filename becomes its URL, so
