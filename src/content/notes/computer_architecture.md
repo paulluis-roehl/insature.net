@@ -1,11 +1,11 @@
 ---
-id: computer
+id: computer_architecture
 aliases: []
 tags: []
 created: 2026-08-18 01:00
 description: How to build a computer.
-modified: 2026-08-26 13:42
-title: Computer-Architecture
+modified: 2026-08-28 10:48
+title: Computer architecture
 ---
 
 <small>_This note is based on a 50-hour course I gave in the summer of 2026 to a group of high-school students in Germany, which in turn is based on the excellent [Nand2Tetris](https://www.nand2tetris.org/)._</small>
@@ -52,7 +52,7 @@ After all these commands are correctly translated into Assembly (which is, essen
 Going from the virtual machine to Jack brings about all the amenities of modern programming languages: object orientation, loops, if-statements and so on.
 The Jack-to-VM compiler is split into a _tokenizer_, which parses an input file into a stream of valid language tokens, and a _compilation engine_, which makes sure the tokens constitute valid sentences within the programming language and subsequently writes the corresponding VM code.
 
-### Operating System
+### Operating system
 
 A special piece of software is the operating system.
 While in a real computer the OS is responsible for drivers, privileges and users, the running of multiple processes in parallel and more, the _Hack OS_ provides only a small standard library of Jack functions.
