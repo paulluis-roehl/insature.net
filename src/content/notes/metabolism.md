@@ -4,7 +4,7 @@ aliases: []
 tags: []
 created: 2026-08-28 10:51
 description: The basics of how metabolism works.
-modified: 2026-08-28 11:20
+modified: 2026-08-31 23:37
 title: Metabolism
 ---
 
@@ -23,6 +23,8 @@ At the heart of this lies the _citric acid cycle_ (CAC), also known as _Krebs cy
 ---
 
 `[CONTINUE]`
+
+![metabolism](/assets/metabolism.svg)
 
 
 ## References
