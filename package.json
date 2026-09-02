@@ -11,6 +11,9 @@
   },
   "devDependencies": {
     "astro": "^7.2.10",
-    "@fontsource/stix-two-text": "^5.3.0"
+    "@fontsource/stix-two-text": "^5.3.0",
+    "@astrojs/markdown-remark": "^7.3.0",
+    "remark-math": "^6.0.0",
+    "temml": "^0.13.5"
   }
 }
