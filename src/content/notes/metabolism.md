@@ -4,7 +4,7 @@ aliases: []
 tags: []
 created: 2026-08-28 10:51
 description: The basics of how metabolism works.
-modified: 2026-09-02 22:14
+modified: 2026-09-02 22:38
 title: Metabolism
 ---
 
@@ -27,10 +27,10 @@ They are either directly used for building proteins or, if there is no need for 
 Conversely, in times of need, the body may cannibalise its own proteins and muscles, burning them for energy.
 
 
-| Macronutrient | Constituents | Storage form     |
-|---------------|--------------|------------------|
-| proteins      | amino acids  | ---              |
-| carbohydrates | glucose      | glycogen         |
+| Macronutrient | Constituents | Storage form    |
+|---------------|--------------|-----------------|
+| proteins      | amino acids  | —               |
+| carbohydrates | glucose      | glycogen        |
 | fats          | fatty acids  | triacylglycerol |
 
 
@@ -43,7 +43,7 @@ It consists of eight intermediates that are transformed into each other in this 
 
 1. Citrate
 2. Isocitrate
-3. α-Ketaglutarate
+3. $\alpha$-Ketoglutarate
 4. Succinyl-CoA
 5. Succinate
 6. Fumarate
@@ -60,7 +60,7 @@ One round of the cycle produces on average 10 ATP.
 
 Sugars are a particularly quick & easy way to generate energy.
 A single glucose molecule is reduced to two pyruvate molecules and, in the process of this, already generates 7 ATP.
-Two goes of the Krebs cycle produce in total $2 \times (10 + 2.5) = 25$ ATP, landing glucose at 32 ATP net total.
+Two runs of the Krebs cycle produce $2 \times (10 + 2.5) = 25$ ATP, landing glucose at net 32 ATP total.
 
 Next to free ATP lying around, glucose (stored in glycogen molecules) is the quickest way to get further ATP in the muscles under exertion.
 
@@ -72,7 +72,10 @@ Another 1-2% is stored in the muscles, for direct use.
 While the muscles exert themselves and ATP is being used, before the glycogen stores (or later the triacylglycerols) are touched, there is another source of ATP, through creatine.
 
 This is essentially your body cheating itself:
-There is a reaction at equilibrium that converts $\ce{ATP + creatine -> ADP + phosphocreatine}$.
+There is a reaction at equilibrium that converts
+$$
+\ce{ATP + creatine <=> ADP + phosphocreatine}.
+$$
 If there is a sufficient amount of creatine in your muscles, this binds one phosphor group from the ATP in the higher energy compound phosphocreatine.
 Meanwhile, the body replenishes the ATP to make sure there is sufficient supply.
 
