@@ -62,3 +62,16 @@ h2 {
   margin: 0;
   font-size: 1.4rem;
 }
+
+.meta-text {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-small);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}

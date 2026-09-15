@@ -12,7 +12,7 @@ const { notes } = Astro.props;
   {notes.map((note) => (
     <li>
       <a href={`/notes/${note.id}/`}>
-        <span>{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
+        <span class="meta-text">{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
         <strong>{note.data.title}</strong>
         {note.data.description && <p>{note.data.description}</p>}
       </a>
@@ -30,13 +30,6 @@ const { notes } = Astro.props;
 
   .notes li { border-bottom: 1px solid var(--color-border); }
   .notes a { display: block; padding-block: 1.2rem; text-decoration: none; }
-  .notes span {
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-small);
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-  }
   .notes strong {
     color: var(--color-text);
     display: block;

@@ -9,7 +9,7 @@ const recentNotes = sortByModified(notes).slice(0, 3);
 
 <Base title="Home | insature" description="Overview.">
   <section class="intro">
-    <p class="eyebrow">home</p>
+    <p class="meta-text">home</p>
     <h1>Insature</h1>
     <p class="lede">A workbench, a quick reference and an archive.</p>
   </section>
@@ -17,7 +17,7 @@ const recentNotes = sortByModified(notes).slice(0, 3);
   <section aria-labelledby="recent-notes">
     <div class="section-heading">
       <h2 id="recent-notes">Recent activity</h2>
-      <a href="/notes/">all notes</a>
+      <a class="meta-text" href="/notes/">all notes</a>
     </div>
     <NoteList notes={recentNotes} />
   </section>
@@ -25,13 +25,6 @@ const recentNotes = sortByModified(notes).slice(0, 3);
 
 <style>
   .intro { margin-bottom: 5rem; max-width: 40rem; }
-  .eyebrow, .section-heading a {
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-small);
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-  }
-  .lede { font-size: 1.25rem; max-width: 33rem; }
+  .lede { max-width: 33rem; }
   .section-heading { align-items: baseline; display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
 </style>

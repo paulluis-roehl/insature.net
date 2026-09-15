@@ -24,7 +24,7 @@ const date = note.data.created.toLocaleDateString("en-GB", {
 
 <Base title={`${note.data.title} | insature`} description={note.data.description}>
   <article>
-    <p class="meta">{date} · note</p>
+    <p class="meta-text">{date} · note</p>
     <h1>{note.data.title}</h1>
     {note.data.description && <p class="lede">{note.data.description}</p>}
     <div class="prose">
@@ -36,6 +36,5 @@ const date = note.data.created.toLocaleDateString("en-GB", {
 
 <style>
   article { max-width: 39rem; }
-  .meta { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--font-size-small); letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; }
-  .lede { font-size: 1.35rem; line-height: 1.45; margin-block: 2rem; }
+  .lede { margin-block: 2rem; }
 </style>
