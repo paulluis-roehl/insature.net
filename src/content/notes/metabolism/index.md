@@ -34,7 +34,7 @@ Conversely, in times of need, the body may cannibalise its own proteins and musc
 | fats          | fatty acids  | triacylglycerol |
 
 
-![metabolism](/assets/metabolism.svg)
+![metabolism](./metabolism.svg)
 
 ## Krebs cycle
 
