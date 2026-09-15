@@ -11,6 +11,8 @@ A soon-to-be digital garden and personal blog.
 
 - stripping metadata from images: `npm run strip-imgs -- path/to/images*.jpg`
 
+NB: update website version with `npm version patch`, `npm version minor` or `npm version major`.
+
 ## Writing notes
 
 Add a Markdown file to `src/content/notes/`. Its filename becomes its URL, so
