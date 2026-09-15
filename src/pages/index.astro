@@ -24,7 +24,7 @@ const recentNotes = sortByModified(notes).slice(0, 3);
           <a href={`/notes/${note.id}/`}>
             <span>{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
             <strong>{note.data.title}</strong>
-            <p>{note.data.description}</p>
+            {note.data.description && <p>{note.data.description}</p>}
           </a>
         </li>
       ))}
