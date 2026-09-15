@@ -1,0 +1,64 @@
+:root {
+  --color-background: #f7f4ed;
+  --color-surface: #f1ede3;
+  --color-surface-strong: #ece7db;
+  --color-text: #20271f;
+  --color-heading: #172518;
+  --color-muted: #6d7369;
+  --color-border: #d9d2c5;
+  --color-link: #315a47;
+  --color-link-hover: #a34d2f;
+
+  --font-body: "STIX Two Text", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size-small: 0.72rem;
+  --letter-spacing-wide: 0.04em;
+
+  --content-width: 46rem;
+  --page-gutter: 1.25rem;
+
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--color-link);
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 0.2rem;
+}
+
+h1,
+h2 {
+  color: var(--color-heading);
+  line-height: 1.1;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  letter-spacing: -0.055em;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}

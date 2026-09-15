@@ -2,6 +2,7 @@
 import "@fontsource/stix-two-text/400.css";
 import "@fontsource/stix-two-text/400-italic.css";
 import "@fontsource/stix-two-text/700.css";
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -37,21 +38,9 @@ const {
   </body>
 </html>
 
-<style is:global>
-  :root {
-    color: #20271f;
-    background: #f7f4ed;
-    font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
-  * { box-sizing: border-box; }
-
-  body { margin: 0; }
-
+<style>
   header, main, footer {
-    width: min(100% - 2.5rem, 46rem);
+    width: min(100% - 2 * var(--page-gutter), var(--content-width));
     margin-inline: auto;
   }
 
@@ -60,31 +49,24 @@ const {
     align-items: baseline;
     justify-content: space-between;
     padding-block: 2rem 4rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 
   .wordmark {
     color: inherit;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-wide);
     text-decoration: none;
   }
 
   nav { display: flex; gap: 1rem; }
 
-  a { color: #315a47; text-underline-offset: 0.16em; }
-  a:hover { color: #a34d2f; }
-
-  h1, h2 { color: #172518; line-height: 1.1; }
-  h1 { font-size: clamp(2.5rem, 9vw, 5rem); letter-spacing: -0.055em; margin: 0; }
-  h2 { font-size: 1.4rem; margin: 0; }
-
   footer {
-    border-top: 1px solid #d9d2c5;
-    color: #6d7369;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.72rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
     margin-top: 6rem;
     padding-block: 1.5rem 3rem;
   }

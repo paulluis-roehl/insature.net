@@ -34,11 +34,11 @@ const recentNotes = sortByModified(notes).slice(0, 3);
 
 <style>
   .intro { margin-bottom: 5rem; max-width: 40rem; }
-  .eyebrow, .notes span, .section-heading a {
-    color: #6d7369;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
+  .eyebrow, .section-heading a {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: uppercase;
   }
   .lede { font-size: 1.25rem; max-width: 33rem; }
