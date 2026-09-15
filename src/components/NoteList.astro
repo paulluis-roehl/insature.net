@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  notes: CollectionEntry<"notes">[];
+}
+
+const { notes } = Astro.props;
+---
+
+<ul class="notes">
+  {notes.map((note) => (
+    <li>
+      <a href={`/notes/${note.id}/`}>
+        <span>{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
+        <strong>{note.data.title}</strong>
+        {note.data.description && <p>{note.data.description}</p>}
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .notes {
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .notes li { border-bottom: 1px solid var(--color-border); }
+  .notes a { display: block; padding-block: 1.2rem; text-decoration: none; }
+  .notes span {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+  .notes strong {
+    color: var(--color-text);
+    display: block;
+    font-size: 1.3rem;
+    margin-top: 0.1rem;
+  }
+  .notes p { color: var(--color-muted); margin: 0.1rem 0 0; }
+</style>

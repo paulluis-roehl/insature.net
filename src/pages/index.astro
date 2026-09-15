@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import NoteList from "../components/NoteList.astro";
 import { notes, sortByModified } from "../content/content.ts"
 
 // get the 3 most recent notes
@@ -18,17 +19,7 @@ const recentNotes = sortByModified(notes).slice(0, 3);
       <h2 id="recent-notes">Recent activity</h2>
       <a href="/notes/">all notes</a>
     </div>
-    <ul class="notes">
-          {recentNotes.map((note) => (
-        <li>
-          <a href={`/notes/${note.id}/`}>
-            <span>{note.data.created.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
-            <strong>{note.data.title}</strong>
-            {note.data.description && <p>{note.data.description}</p>}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <NoteList notes={recentNotes} />
   </section>
 </Base>
 
@@ -43,9 +34,4 @@ const recentNotes = sortByModified(notes).slice(0, 3);
   }
   .lede { font-size: 1.25rem; max-width: 33rem; }
   .section-heading { align-items: baseline; display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
-  .notes { border-top: 1px solid #d9d2c5; list-style: none; margin: 0; padding: 0; }
-  .notes li { border-bottom: 1px solid #d9d2c5; }
-  .notes a { display: block; padding-block: 1.2rem; text-decoration: none; }
-  .notes strong { color: #20271f; display: block; font-size: 1.3rem; margin-top: 0.1rem; }
-  .notes p { color: #6d7369; margin: 0.1rem 0 0; }
 </style>
