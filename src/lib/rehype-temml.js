@@ -1,9 +1,9 @@
+import { fromHtml } from "hast-util-from-html";
 import temml from "temml";
 
 /**
  * Rehype plugin that renders remark-math's output (`code.language-math`)
- * as MathML via Temml. The MathML is emitted as a `raw` node, which Astro's
- * markdown pipeline parses with rehype-raw.
+ * as MathML via Temml.
  */
 
 function toText(node) {
@@ -24,10 +24,8 @@ function isInlineMath(node) {
 }
 
 function mathNode(tex, displayMode) {
-  return {
-    type: "raw",
-    value: temml.renderToString(tex, { displayMode }),
-  };
+  const mathml = temml.renderToString(tex, { displayMode });
+  return fromHtml(mathml, { fragment: true }).children[0];
 }
 
 function transform(node) {
