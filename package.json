@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "strip-imgs": "magick mogrify -auto-orient -strip"
   },
   "devDependencies": {
     "astro": "^7.2.10",

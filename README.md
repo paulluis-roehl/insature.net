@@ -9,6 +9,8 @@ A soon-to-be digital garden and personal blog.
 - Build for deployment (not necessary for github pages): `npm run build`
 - Preview deployed site: `npm run preview`
 
+- stripping metadata from images: `npm run strip-imgs -- path/to/images*.jpg`
+
 ## Writing notes
 
 Add a Markdown file to `src/content/notes/`. Its filename becomes its URL, so
