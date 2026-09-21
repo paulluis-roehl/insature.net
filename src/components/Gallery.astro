@@ -196,24 +196,6 @@ const galleryStyle = [
     display: none;
   }
 
-  @media (max-width: 34rem) {
-    .gallery {
-      grid-template-columns: 1fr !important;
-      grid-template-areas: none !important;
-      grid-template-rows: none !important;
-      aspect-ratio: auto !important;
-    }
-
-    .gallery__item {
-      grid-area: auto !important;
-    }
-
-    .gallery__link,
-    .gallery__image {
-      height: auto;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .gallery__image {
       transition: none;
