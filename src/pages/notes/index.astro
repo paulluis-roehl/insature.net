@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import NoteList from "../../components/NoteList.astro";
+import ContentList from "../../components/ContentList.astro";
 import { notes, sortByModified } from "../../lib/notes.ts"
 ---
 
@@ -8,7 +8,7 @@ import { notes, sortByModified } from "../../lib/notes.ts"
   <p class="meta-text">all notes</p>
   <h1>Notes</h1>
   <article>
-    <NoteList notes={sortByModified(notes)} />
+    <ContentList entries={sortByModified(notes)} />
   </article>
 </Base>
 

@@ -11,7 +11,18 @@ const notesCollection = defineCollection({
   }),
 });
 
+const outputCollection = defineCollection({
+  loader: glob({ base: "./src/content/output", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    created: z.coerce.date(),
+    modified: z.coerce.date().optional(),
+  }),
+});
+
 // This key should match your collection directory name in "src/content"
 export const collections = {
-  notes: notesCollection
+  notes: notesCollection,
+  output: outputCollection,
 };

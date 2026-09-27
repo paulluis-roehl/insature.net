@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import "../../styles/prose.css";
+import "../../styles/temml.css";
+
+export async function getStaticPaths() {
+  const output = await getCollection("output");
+  return output.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const date = entry.data.created.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<Base title={`${entry.data.title} | insature`} description={entry.data.description}>
+  <article>
+    <p class="meta-text">{date} · output</p>
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="lede">{entry.data.description}</p>}
+    <div class="prose">
+      <Content />
+    </div>
+    <p><a href="/output/">Back to output</a></p>
+  </article>
+</Base>
+
+<style>
+  .lede { margin-block: 2rem; }
+</style>

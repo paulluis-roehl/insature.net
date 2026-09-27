@@ -30,3 +30,10 @@ Write the note in Markdown here.
 ```
 
 Published notes can be sorted by date and appear on the notes page and home page.
+
+## Publishing output
+
+Add Markdown or MDX files to `src/content/output/` using the same frontmatter as
+notes. For example, `my-essay.md` is published at `/output/my-essay/`. Output is
+listed newest first on the output page, and can include essays, books, code,
+drawings, and other original work.

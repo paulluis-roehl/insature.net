@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import NoteList from "../components/NoteList.astro";
+import ContentList from "../components/ContentList.astro";
 import { notes, sortByModified } from "../lib/notes.ts"
 
 // get the 3 most recent notes
@@ -19,7 +19,7 @@ const recentNotes = sortByModified(notes).slice(0, 3);
       <h2 id="recent-notes">Recent activity</h2>
       <a class="meta-text" href="/notes/">all notes</a>
     </div>
-    <NoteList notes={recentNotes} />
+    <ContentList entries={recentNotes} />
   </section>
 </Base>
 

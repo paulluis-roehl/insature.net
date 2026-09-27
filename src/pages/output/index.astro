@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import ContentList from "../../components/ContentList.astro";
+
+const output = (await getCollection("output")).sort(
+  (a, b) => b.data.created.getTime() - a.data.created.getTime()
+);
+---
+
+<Base title="Output | insature" description="Things I create: essays, books, code, drawings, and more.">
+  <p class="meta-text">all output</p>
+  <h1>Output</h1>
+  <p class="lede">Things I create: essays, books, code, drawings, and more.</p>
+  <section aria-label="Created works">
+    {output.length > 0 ? <ContentList entries={output} /> : <p>Nothing published here yet.</p>}
+  </section>
+</Base>
+
+<style>
+  section { margin-top: 2rem; padding-top: 1.2rem; }
+</style>
