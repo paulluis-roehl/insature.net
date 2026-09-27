@@ -8,10 +8,10 @@ const output = (await getCollection("output")).sort(
 );
 ---
 
-<Base title="Output | insature" description="Things I create: essays, books, code, drawings, and more.">
+<Base title="Output | insature" description="Things I create.">
   <p class="meta-text">all output</p>
   <h1>Output</h1>
-  <p class="lede">Things I create: essays, books, code, drawings, and more.</p>
+  <p class="lede">Things I create.</p>
   <section aria-label="Created works">
     {output.length > 0 ? <ContentList entries={output} /> : <p>Nothing published here yet.</p>}
   </section>

@@ -4,9 +4,10 @@ import ContentList from "../../components/ContentList.astro";
 import { notes, sortByModified } from "../../lib/notes.ts"
 ---
 
-<Base title="Notes | insature" description="Notes on various topics.">
+<Base title="Notes | insature" description="Things I study.">
   <p class="meta-text">all notes</p>
   <h1>Notes</h1>
+  <p class="lede">Things I study.</p>
   <article>
     <ContentList entries={sortByModified(notes)} />
   </article>
