@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import ContentList from "../components/ContentList.astro";
-import { notes, sortByModified } from "../lib/notes.ts"
+import { notes, sortByModified } from "../lib/content.ts";
 
 // get the 3 most recent notes
 const recentNotes = sortByModified(notes).slice(0, 3);

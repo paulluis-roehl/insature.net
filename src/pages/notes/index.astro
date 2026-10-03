@@ -1,18 +1,16 @@
 ---
 import Base from "../../layouts/Base.astro";
 import ContentList from "../../components/ContentList.astro";
-import { notes, sortByModified } from "../../lib/notes.ts"
+import { notes, sortByModified } from "../../lib/content.ts";
+
+const sortedNotes = sortByModified(notes);
 ---
 
 <Base title="Notes | insature" description="Things I study.">
   <p class="meta-text">all notes</p>
   <h1>Notes</h1>
   <p class="lede">Things I study.</p>
-  <article>
-    <ContentList entries={sortByModified(notes)} />
-  </article>
+  <section class="collection-list" aria-label="Notes">
+    <ContentList entries={sortedNotes} />
+  </section>
 </Base>
-
-<style>
-  article { margin-top: 2rem; padding-top: 1.2rem; }
-</style>

@@ -1,11 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { output } from "../../lib/content.ts";
 import Base from "../../layouts/Base.astro";
 import "../../styles/prose.css";
 import "../../styles/temml.css";
 
 export async function getStaticPaths() {
-  const output = await getCollection("output");
   return output.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },

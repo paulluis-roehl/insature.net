@@ -8,7 +8,7 @@ interface Props {
 const { entries } = Astro.props;
 ---
 
-<ul class="entries">
+{entries.length > 0 ? <ul class="entries">
   {entries.map((entry) => (
     <li>
       <a href={`/${entry.collection}/${entry.id}/`}>
@@ -18,7 +18,7 @@ const { entries } = Astro.props;
       </a>
     </li>
   ))}
-</ul>
+</ul> : <p>Nothing published here yet.</p>}
 
 <style>
   .entries {
