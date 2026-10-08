@@ -1,10 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import ContentList from "../components/ContentList.astro";
-import { notes, sortByModified } from "../lib/content.ts";
+import { notes, output, sortByModified } from "../lib/content.ts";
 
-// get the 3 most recent notes
-const recentNotes = sortByModified(notes).slice(0, 3);
+const recentEntries = sortByModified([...notes, ...output]);
 ---
 
 <Base title="Home | insature" description="Overview.">
@@ -14,16 +13,55 @@ const recentNotes = sortByModified(notes).slice(0, 3);
     <p class="lede">A workbench, a quick reference and an archive.</p>
   </section>
 
-  <section aria-labelledby="recent-notes">
+  <section aria-labelledby="recent-activity">
     <div class="section-heading">
-      <h2 id="recent-notes">Recent activity</h2>
-      <a class="meta-text" href="/notes/">all notes</a>
+      <h2 id="recent-activity">Recent activity</h2>
     </div>
-    <ContentList entries={recentNotes} />
+    <div id="recent-entries">
+      <ContentList entries={recentEntries} initialVisible={3} />
+    </div>
+    <noscript>
+      <style is:global>
+        #recent-entries li[hidden] { display: list-item; }
+      </style>
+    </noscript>
+    <button class="view-more meta-text" type="button" aria-controls="recent-entries" hidden>view more</button>
   </section>
 </Base>
+
+<script>
+  const entries = document.querySelectorAll<HTMLElement>("#recent-entries li");
+  const button = document.querySelector<HTMLButtonElement>(".view-more");
+  let visibleCount = 3;
+
+  const updateEntries = () => {
+    entries.forEach((entry, index) => {
+      entry.hidden = index >= visibleCount;
+    });
+    if (button) button.hidden = visibleCount >= entries.length;
+  };
+
+  button?.addEventListener("click", () => {
+    visibleCount += 5;
+    updateEntries();
+  });
+
+  updateEntries();
+</script>
 
 <style>
   .intro { margin-bottom: 5rem; }
   .section-heading { align-items: baseline; display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+  .view-more {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.2rem;
+    cursor: pointer;
+    margin-top: 1.2rem;
+    margin-left: auto;
+    padding: 0.6rem 1rem;
+  }
+  .view-more[hidden] { display: none; }
+  .view-more:hover { color: var(--color-link-hover); }
 </style>
