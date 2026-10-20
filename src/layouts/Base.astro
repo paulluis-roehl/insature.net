@@ -3,6 +3,7 @@ import "@fontsource/stix-two-text/400.css";
 import "@fontsource/stix-two-text/400-italic.css";
 import "@fontsource/stix-two-text/700.css";
 import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
 
 interface Props {
   title?: string;
@@ -24,14 +25,7 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <header>
-      <a class="wordmark" href="/">insature</a>
-      <nav aria-label="Primary navigation">
-        <a href="/notes/">notes</a>
-        <a href="/output/">output</a>
-        <a href="/about/">about</a>
-      </nav>
-    </header>
+    <SiteHeader />
     <main>
       <slot />
     </main>
@@ -40,28 +34,10 @@ const {
 </html>
 
 <style>
-  header, main, footer {
+  main, footer {
     width: min(100% - 2 * var(--page-gutter), var(--content-width));
     margin-inline: auto;
   }
-
-  header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding-block: 2rem 4rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-  }
-
-  .wordmark {
-    color: inherit;
-    font-weight: 700;
-    letter-spacing: var(--letter-spacing-wide);
-    text-decoration: none;
-  }
-
-  nav { display: flex; gap: 1rem; }
 
   footer {
     border-top: 1px solid var(--color-border);
@@ -70,9 +46,5 @@ const {
     font-size: var(--font-size-small);
     margin-top: 6rem;
     padding-block: 1.5rem 3rem;
-  }
-
-  @media (max-width: 34rem) {
-    header { padding-block: 1.4rem 3rem; }
   }
 </style>

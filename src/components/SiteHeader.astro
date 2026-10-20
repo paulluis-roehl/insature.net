@@ -1,0 +1,188 @@
+<header data-navigation>
+  <a class="wordmark" href="/">insature</a>
+  <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+    <svg class="menu-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+    <svg class="close-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <nav id="primary-navigation" aria-label="Primary navigation">
+    <a href="/notes/">notes</a>
+    <a href="/output/">output</a>
+    <a href="/about/">about</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-navigation]");
+  const toggle = header?.querySelector<HTMLButtonElement>(".menu-toggle");
+  const navigation = header?.querySelector<HTMLElement>("nav");
+
+  if (header && toggle && navigation) {
+    const mobile = window.matchMedia("(max-width: 34rem)");
+    const background = document.querySelectorAll<HTMLElement>("main, footer");
+    let open = false;
+    let previousOverflow = "";
+
+    const setOpen = (next: boolean, restoreFocus = true) => {
+      if (next !== open) {
+        if (next) {
+          previousOverflow = document.body.style.overflow;
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = previousOverflow;
+        }
+      }
+      open = next;
+      header.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      navigation.inert = mobile.matches && !open;
+      background.forEach((element) => { element.inert = open; });
+      if (open) {
+        header.setAttribute("role", "dialog");
+        header.setAttribute("aria-modal", "true");
+        header.setAttribute("aria-label", "Site menu");
+        navigation.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
+      } else {
+        header.removeAttribute("role");
+        header.removeAttribute("aria-modal");
+        header.removeAttribute("aria-label");
+        if (restoreFocus) toggle.focus();
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      header.classList.add("menu-animated");
+      setOpen(!open);
+    });
+    header.addEventListener("click", (event) => {
+      if (open && event.target instanceof Element && event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (!open) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+      } else if (event.key === "Tab") {
+        const controls = [...header.querySelectorAll<HTMLElement>("a, button")];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    });
+    mobile.addEventListener("change", () => {
+      header.classList.remove("menu-animated");
+      const focusedToggle = document.activeElement === toggle;
+      setOpen(false, false);
+      if (!mobile.matches && focusedToggle) navigation.querySelector<HTMLAnchorElement>("a")?.focus();
+    });
+    header.classList.add("menu-enhanced");
+    setOpen(false, false);
+  }
+</script>
+
+<style>
+  header {
+    --mobile-nav-font-size: 1.25rem;
+    width: min(100% - 2 * var(--page-gutter), var(--content-width));
+    margin-inline: auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-block: 2rem 4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  .wordmark {
+    color: inherit;
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing-wide);
+    text-decoration: none;
+  }
+
+  nav { display: flex; gap: 1rem; }
+
+  .menu-toggle { display: none; }
+
+  @media (max-width: 34rem) {
+    header { padding-block: 1.4rem 3rem; }
+
+    .menu-enhanced { align-items: center; position: relative; z-index: 20; }
+    .menu-enhanced .wordmark, .menu-toggle { position: relative; z-index: 2; }
+    .menu-enhanced .wordmark { font-size: var(--mobile-nav-font-size); }
+
+    .menu-enhanced .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      margin-block: -8px;
+      padding: 10px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      position: absolute;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .menu-toggle .close-icon { opacity: 0; transform: rotate(-90deg) scale(0.9); }
+    .menu-open .menu-icon { opacity: 0; transform: rotate(90deg) scale(0.9); }
+    .menu-open .close-icon { opacity: 1; transform: rotate(0) scale(1); }
+
+    .menu-enhanced nav {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      height: 100dvh;
+      padding: 6rem var(--page-gutter) 2rem;
+      background: var(--color-background);
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      visibility: hidden;
+      transform: translateX(100%);
+      transition: transform 240ms cubic-bezier(.215,.61,.355,1);
+    }
+
+    /* Delay hiding only after interaction, never when crossing the breakpoint. */
+    .menu-animated nav {
+      transition: transform 240ms cubic-bezier(.215,.61,.355,1), visibility 240ms;
+    }
+
+    .menu-enhanced nav a {
+      display: block;
+      padding-block: 0.6rem;
+      font-size: var(--mobile-nav-font-size);
+    }
+
+    .menu-open nav {
+      visibility: visible;
+      transform: translateX(0);
+      transition-duration: 240ms, 0s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-enhanced nav, .menu-toggle svg { transition: none; }
+  }
+</style>
