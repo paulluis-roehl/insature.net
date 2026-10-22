@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-10-22
+
 ### Changed
 
 - Recent notes now contain all categories
 - Changed `All Notes` to `View more`
 - Changed back buttons to lead to main page
+
+### Fixed
+
+- Improved menu for mobile navigation
